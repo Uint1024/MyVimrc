@@ -24,6 +24,15 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Fast tabs movement
+nnoremap gt :tabnext<CR>
+nnoremap gT :tabprevious<CR>
+nnoremap GT :tabprevious<CR>
+
+" Saving
+nnoremap <c-s> :w<CR>
+inoremap <c-s> <Esc>:w<CR>i
+
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
