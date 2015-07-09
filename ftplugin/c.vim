@@ -3,6 +3,11 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+"Very smart indent
+set autoindent
+set smartindent
+set cindent
+
 "disable cursor blinking
 :set guicursor+=a:blinkon0
 
@@ -11,9 +16,9 @@ set expandtab
 :set secure
 
 "C/C++
-:inoremap if( if(){<CR><BS>}<Up><Right><Right>
+:inoremap if( if(){<CR><BS><BS>}<Up><Right><Right>
 :inoremap for( for(int i = 0 ; i < ; ++i){<CR>}<Up><Esc>wwwwwwwwwi
-:inoremap while( while(){<CR><BS>}<Up><Right><Right><Right><Right><Right>
+:inoremap while( while(){<CR><BS><BS>}<Up><Right><Right><Right><Right><Right>
 :inoremap #< #include <><Left>
 :inoremap #" #include ".h"<Left><Left><Left>
 :inoremap <leader>p printf("");<Left><Left><Left>
@@ -23,8 +28,8 @@ set expandtab
 :inoremap <leader>c std::cout << 
 :inoremap nullp nullptr
 :inoremap <leader>e  << std::endl;
-:inoremap std::s std::string
-:inoremap std::v std::vector<<Left>
+:inoremap std::st std::string
+:inoremap std::ve std::vector<
 :inoremap vv void
 :inoremap ii int
 :inoremap bb bool
@@ -33,15 +38,15 @@ set expandtab
 :inoremap <leader>re return
 
 "Experimenting with this...
-:inoremap jf <CR>
-:inoremap fj <CR>
-:inoremap kd <Backspace>
-:inoremap dk <Backspace>
+
+
+
+
+
 
 
 "Toggle relative line number
-:nnoremap <c-l> :call LineNumberToggle()<CR>
-:inoremap <c-l> <Esc>:call LineNumberToggle()<CR>i
+:nnoremap <c-n> :call LineNumberToggle()<CR>
 function! LineNumberToggle()
   if(&relativenumber == 1)
     set norelativenumber
@@ -51,16 +56,20 @@ function! LineNumberToggle()
 endfunction
 
 :inoremap <leader>( (){<CR>}<Up><Esc>$<Left>i
+
+    
 :inoremap <leader>nd #ifndef <C-R>=expand("%:t:r")<CR>_h<Esc>viwUo#define <C-R>=expand("%:t:r")<CR>_h<Esc>viwUo#endif<Esc>O
 
 :inoremap <leader>q <C-R>= expand("%:t:r")<CR><Esc>bvUea::
 :inoremap {<CR> {<CR><CR>}<Up><Tab>
 
-
-:inoremap <F5> <Esc>:!make<i><CR>
-:inoremap <F6> <Esc>:!openglgame.exe<i><CR>
-:noremap <F5> :!make<CR>
-:noremap <F6> :!openglgame.exe<CR>
+"Turn VIM into an IDE
+:inoremap <F5> <Esc>:cd build<CR>:!make<CR>:cd ..<CR><i>
+:inoremap <F6> <Esc>:cd build<CR>:!openglgame.exe<CR>:cd ..<CR><i>
+:noremap <F5> :cd build<CR>:!make<CR>:cd ..<CR>
+:noremap <F6> :cd build<CR>:!openglgame.exe<CR>:cd ..<CR>
+let &path.="src, include"
+"set makeprg=make\ -C /build
 
 function! NewClassHeader(className)
   echo "Creating new header for class"

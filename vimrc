@@ -1,5 +1,33 @@
+
+set nocompatible
+set ignorecase
+
+set history=1000
+set background=dark
+set cursorline
+
+noremap H ^
+noremap L $
+
+" Easier to reach on AZERTY keyboard
+noremap ù %
+
+noremap <c-d> <c-d>zz
+noremap <c-u> <c-u>zz
+" Disable all beeping sounds
+set vb t_vb=
+
+" Use vimrc files in ftplugin
+filetype plugin on
+
+" Better leader key
+let mapleader=","
+
+" Allow to backspace any text in insert mode
+set backspace=indent,eol,start
+
 " good colorscheme and font
-colorscheme hybrid
+colorscheme hybrid 
 set guifont=DejaVu_Sans_Mono:h11:cANSI
 
 " enable line number
